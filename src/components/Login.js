@@ -1,11 +1,62 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
+import { validateSignup } from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
-  const [signupForm, setSignupForm] = useState(false);
+  const [signupForm, setSignupForm] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const email = useRef("");
+  const password = useRef("");
+  const name = useRef("");
 
   const toggleSignupForm = () => {
     setSignupForm(!signupForm);
+  };
+
+  const onButtonClick = async () => {
+    let signupValidateResult = validateSignup(
+      email.current.value,
+      password.current.value,
+      name.current.value
+    );
+
+    setErrorMessage(signupValidateResult);
+
+    if (!signupValidateResult && signupForm) {
+      // Signup
+      try {
+        let signupResult = await createUserWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        );
+        const user = signupResult.user;
+      } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage(errorCode + "-" + errorMessage);
+      }
+    } else if (!signupValidateResult && !signupForm) {
+      // Login
+      try {
+        let signinResult =await signInWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        );
+        const user = signinResult.user;
+      } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage(errorCode + "-" + errorMessage);
+      }
+    }
   };
 
   return (
@@ -19,6 +70,7 @@ const Login = () => {
       </div>
 
       <form
+        onSubmit={(e) => e.preventDefault()}
         action=""
         className="absolute p-10 bg-black opacity-90 w-3/12 my-40 mx-auto text-white right-0 left-0 rounded-lg"
       >
@@ -36,14 +88,22 @@ const Login = () => {
           type="email"
           placeholder="Email"
           className="p-4 my-2 w-full bg-gray-600"
+          ref={email}
         />
         <input
           type="password"
           placeholder="Password"
           className="p-4 my-2 w-full bg-gray-600"
+          ref={password}
         />
-        <button className="p-4 my-4 bg-red-700 w-full text-2xl font-bold">
-          Sign In
+        <p className="text-red-400 font-semibold text-lg py-2">
+          {errorMessage}
+        </p>
+        <button
+          onClick={onButtonClick}
+          className="p-4 my-4 bg-red-700 w-full text-2xl font-bold"
+        >
+          {signupForm ? "Sign Up" : "Sign In"}
         </button>
         <p
           onClick={toggleSignupForm}
