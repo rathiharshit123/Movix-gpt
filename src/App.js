@@ -3,11 +3,11 @@ import Body from "./components/Body";
 import appStore from "./utils/redux/appStore";
 
 function App() {
-  return (
-    <Provider store={appStore}>
-      <Body />
-    </Provider>
-  );
+    return (
+        <Provider store={appStore}>
+            <Body />
+        </Provider>
+    );
 }
 
 export default App;
