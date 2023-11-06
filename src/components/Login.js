@@ -9,7 +9,6 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/redux/userSlice";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [signupForm, setSignupForm] = useState(true);
@@ -20,7 +19,6 @@ const Login = () => {
     const name = useRef("");
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const toggleSignupForm = () => {
         setSignupForm(!signupForm);
@@ -52,8 +50,6 @@ const Login = () => {
                 const { uid, displayName, email: emailAddress } = user;
 
                 dispatch(addUser({ uid, displayName, email: emailAddress }));
-
-                navigate("/browse");
             } catch (error) {
                 const errorCode = error.code;
                 const errorMessage = error.message;
@@ -67,8 +63,6 @@ const Login = () => {
                     email.current.value,
                     password.current.value
                 );
-
-                navigate("/browse");
             } catch (error) {
                 const errorCode = error.code;
                 const errorMessage = error.message;
