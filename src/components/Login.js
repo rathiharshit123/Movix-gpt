@@ -26,8 +26,6 @@ const Login = () => {
         setSignupForm(!signupForm);
     };
 
-    console.log(signupForm, "VALUE");
-
     const onButtonClick = async () => {
         let signupValidateResult = validateSignup(
             email.current.value,
@@ -46,8 +44,6 @@ const Login = () => {
                     password.current.value
                 );
 
-                console.log(name.current.value,"NAMEE")
-
                 await updateProfile(auth.currentUser, {
                     displayName: name.current.value,
                 });
@@ -55,7 +51,6 @@ const Login = () => {
                 const user = signupResult.user;
                 const { uid, displayName, email: emailAddress } = user;
 
-                console.log("dipatching ADD USER for display Name",user)
                 dispatch(addUser({ uid, displayName, email: emailAddress }));
 
                 navigate("/browse");
