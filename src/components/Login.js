@@ -26,6 +26,8 @@ const Login = () => {
         setSignupForm(!signupForm);
     };
 
+    console.log(signupForm, "VALUE");
+
     const onButtonClick = async () => {
         let signupValidateResult = validateSignup(
             email.current.value,
@@ -35,7 +37,7 @@ const Login = () => {
 
         setErrorMessage(signupValidateResult);
 
-        if (!signupValidateResult && signupForm) {
+        if (!signupValidateResult && !signupForm) {
             // Signup
             try {
                 let signupResult = await createUserWithEmailAndPassword(
@@ -44,13 +46,17 @@ const Login = () => {
                     password.current.value
                 );
 
+                console.log(name.current.value,"NAMEE")
+
                 await updateProfile(auth.currentUser, {
                     displayName: name.current.value,
                 });
 
                 const user = signupResult.user;
+                const { uid, displayName, email: emailAddress } = user;
 
-                dispatch(addUser({}));
+                console.log("dipatching ADD USER for display Name",user)
+                dispatch(addUser({ uid, displayName, email: emailAddress }));
 
                 navigate("/browse");
             } catch (error) {
@@ -58,15 +64,14 @@ const Login = () => {
                 const errorMessage = error.message;
                 setErrorMessage(errorCode + "-" + errorMessage);
             }
-        } else if (!signupValidateResult && !signupForm) {
+        } else if (!signupValidateResult && signupForm) {
             // Login
             try {
-                let signinResult = await signInWithEmailAndPassword(
+                await signInWithEmailAndPassword(
                     auth,
                     email.current.value,
                     password.current.value
                 );
-                const user = signinResult.user;
 
                 navigate("/browse");
             } catch (error) {
@@ -93,13 +98,14 @@ const Login = () => {
                 className="absolute p-10 bg-black opacity-90 w-3/12 my-40 mx-auto text-white right-0 left-0 rounded-lg"
             >
                 <h1 className="font-bold text-4xl py-4">
-                    {signupForm ? "Sign Up" : "Sign In"}
+                    {signupForm ? "Log In" : "Sign In"}
                 </h1>
                 {!signupForm && (
                     <input
                         type="text"
                         placeholder="Full Name"
                         className="p-4 my-2 w-full bg-gray-600"
+                        ref={name}
                     />
                 )}
                 <input
@@ -121,7 +127,7 @@ const Login = () => {
                     onClick={onButtonClick}
                     className="p-4 my-4 bg-red-700 w-full text-2xl font-bold"
                 >
-                    {signupForm ? "Sign Up" : "Sign In"}
+                    {signupForm ? "Log In" : "Sign In"}
                 </button>
                 <p
                     onClick={toggleSignupForm}
