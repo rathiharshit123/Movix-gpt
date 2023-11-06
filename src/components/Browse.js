@@ -1,6 +1,8 @@
 import React from "react";
 import Header from "./Header";
 import { useNowPlayingMovies } from "../hooks/useNowPlayingMovies";
+import PrimaryContainer from "./PrimaryContainer";
+import SecondaryContrainer from "./SecondaryContrainer";
 
 const Browse = () => {
     useNowPlayingMovies();
@@ -8,6 +10,8 @@ const Browse = () => {
     return (
         <div>
             <Header />
+            <PrimaryContainer/>
+            <SecondaryContrainer/>
         </div>
     );
 };
