@@ -11,6 +11,9 @@ const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
+    const gptSearch = useSelector((store) => store.gpt);
+
+    const { gptSearchToggle } = gptSearch;
 
     const handleOnClick = async () => {
         try {
@@ -46,9 +49,9 @@ const Header = () => {
             <div>
                 {user && (
                     <div>
-                        <button onClick={gptSearchToggleButton} className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
-                            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                                Search Using GPT
+                        <button onClick={gptSearchToggleButton} className="relative inline-flex text-white items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium rounded-lg">
+                            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-red-700 hover:bg-red-800 rounded-lg">
+                                {gptSearchToggle? "Search Using GPT" : "Browse Movies Yourself"}
                             </span>
                         </button>
 

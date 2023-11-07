@@ -3,7 +3,7 @@ import React from "react";
 const GptSearchBar = () => {
     return (
         <div className="pt-[10%]">
-            <form className="w-1/2 m-auto bg-black">
+            <form onSubmit={(e)=>e.preventDefault()} className="w-1/2 m-auto bg-black">
                 <label
                     htmlFor="default-search"
                     className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
