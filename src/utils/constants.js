@@ -28,4 +28,4 @@ export const UPCOMING_MOVIES =
 export const TMDB_IMAGE_URL = "https://image.tmdb.org/t/p/w780";
 
 export const OPEN_API_KEY =
-    "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";
+    "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";
