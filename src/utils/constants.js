@@ -9,7 +9,7 @@ export const TMDB_API_OPTIONS = {
     headers: {
         accept: "application/json",
         Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NTk2YzAyMjJlYTFjNjNiYzk5MzhmMzYyODg3YWYyMyIsInN1YiI6IjY1NDkzOWM2NjdiNjEzMDEwMmUwYWYyYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FC5G4iMCxbtZgCPFA1V1XG6zVFmkKZ4F-K1MfUgH6Is",
+            "Bearer "+ process.env.REACT_APP_TMDB_API_TOKEN,
     },
 };
 
@@ -26,6 +26,3 @@ export const UPCOMING_MOVIES =
     "https://api.themoviedb.org/3/movie/upcoming?language=en-US";
 
 export const TMDB_IMAGE_URL = "https://image.tmdb.org/t/p/w780";
-
-export const OPEN_API_KEY =
-    "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";
