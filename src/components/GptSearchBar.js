@@ -1,14 +1,33 @@
-import React from "react";
+import React, { useRef } from "react";
+import openai from "../utils/openAi";
 
 const GptSearchBar = () => {
+    const searchValue = useRef();
+
+    const searchUsingGPT = async () => {
+        try {
+            const GPTPrompt =
+                "Recommend me some movies for this query hindi horror movies. Just give me examples of 5 movies with comma seperated names like this example I am giving you.Please follow this format strictly in your answers. Example: Don, Sholay, Gadar, Taare Zameen Par, Tiger-3";
+
+            const chatCompletion = await openai.chat.completions.create({
+                messages: [{ role: "user", content: GPTPrompt }],
+                model: "gpt-3.5-turbo",
+            });
+
+            console.log(chatCompletion,"RESULT")
+        } catch (error) {}
+    };
+
     return (
         <div className="pt-[10%]">
-            <form onSubmit={(e)=>e.preventDefault()} className="w-1/2 m-auto bg-black">
+            <form
+                onSubmit={(e) => e.preventDefault()}
+                className="w-1/2 m-auto bg-black"
+            >
                 <label
                     htmlFor="default-search"
                     className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-                >
-                </label>
+                ></label>
                 <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg
@@ -28,6 +47,7 @@ const GptSearchBar = () => {
                         </svg>
                     </div>
                     <input
+                        ref={searchValue}
                         type="search"
                         id="default-search"
                         className="block w-full p-4 pl-10 text-sm text-black border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -35,6 +55,7 @@ const GptSearchBar = () => {
                         required
                     />
                     <button
+                        onClick={searchUsingGPT}
                         type="submit"
                         className="text-white absolute right-2.5 bottom-2.5 bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >

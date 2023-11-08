@@ -26,3 +26,6 @@ export const UPCOMING_MOVIES =
     "https://api.themoviedb.org/3/movie/upcoming?language=en-US";
 
 export const TMDB_IMAGE_URL = "https://image.tmdb.org/t/p/w780";
+
+export const OPEN_API_KEY =
+    "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";

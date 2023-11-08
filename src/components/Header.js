@@ -51,7 +51,7 @@ const Header = () => {
                     <div>
                         <button onClick={gptSearchToggleButton} className="relative inline-flex text-white items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium rounded-lg">
                             <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-red-700 hover:bg-red-800 rounded-lg">
-                                {gptSearchToggle? "Search Using GPT" : "Browse Movies Yourself"}
+                                {gptSearchToggle ? "Browse Movies Yourself" : "Search Using GPT"}
                             </span>
                         </button>
 
