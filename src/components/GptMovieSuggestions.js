@@ -5,7 +5,8 @@ import GptMovieSuggestionCard from "./GptMovieSuggestionCard";
 const GptMovieSuggestions = () => {
     const gptMovies = useSelector((state) => state.gpt?.gptMovies);
 
-    console.log(gptMovies, "GPT MOVIES");
+    if (gptMovies.length == 0) return;
+
     return (
         <div className="flex-col">
             <h1 className="text-3xl p-4 my-4 font-bold text-white text-center">
