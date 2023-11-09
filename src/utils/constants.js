@@ -16,13 +16,16 @@ export const TMDB_IMAGE_URL = "https://image.tmdb.org/t/p/w780";
 
 export const TMDB_URLS = {
     NOW_PLAYING_TV_SHOWS: "https://api.themoviedb.org/3/tv/airing_today",
+    NOW_PLAYING_MOVIES_URL: "https://api.themoviedb.org/3/movie/now_playing",
     TRENDING_MOVIES_URL: "https://api.themoviedb.org/3/trending/movie/",
     UPCOMING_MOVIES:
         "https://api.themoviedb.org/3/movie/upcoming?language=en-US",
+    UPCOMING_TV_SHOWS: "https://api.themoviedb.org/3/tv/on_the_air",
     TOP_RATED_MOVIES:
-        "https://api.themoviedb.org/3/movie/top_rated?language=en-US",
+        "https://api.themoviedb.org/3/movie/top_rated",
+    TOP_RATED_TV_SHOWS: "https://api.themoviedb.org/3/tv/top_rated",
     POPULAR_MOVIES_URL:
         "https://api.themoviedb.org/3/movie/popular?language=en-US",
-    NOW_PLAYING_MOVIES_URL: "https://api.themoviedb.org/3/movie/now_playing",
+    POPULAR_TV_SHOWS_URL: "https://api.themoviedb.org/3/tv/popular",
     TMDB_IMAGE_URL: "https://image.tmdb.org/t/p/w780",
 };

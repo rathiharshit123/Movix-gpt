@@ -21,14 +21,14 @@ const SecondaryContrainer = () => {
                         title="Now Playing"
                         movies={movies?.nowPlayingMovies[nowPlayingMovies]}
                     />
-                    <MovieList title="Popular" movies={movies?.popularMovies} />
+                    <MovieList title="Popular" movies={movies?.popularMovies[popularMovies]} />
                     <MovieList
                         title="Upcoming"
-                        movies={movies?.upcomingMovies}
+                        movies={movies?.upcomingMovies[upcomingMovies]}
                     />
                     <MovieList
                         title="Top Rated"
-                        movies={movies?.topRatedMovies}
+                        movies={movies?.topRatedMovies[topRatedMovies]}
                     />
                 </div>
             </div>

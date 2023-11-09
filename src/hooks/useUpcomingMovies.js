@@ -1,18 +1,24 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { TMDB_API_OPTIONS, TMDB_URLS } from "../utils/constants";
-import { addUpcomingMovies } from "../utils/redux/movieSlice";
+import { setMovies } from "../utils/redux/movieSlice";
 
-export const useUpcomingMovies = () => {
+export const useUpcomingMovies = (filter) => {
     const dispatch = useDispatch();
 
     const getUpcomingMovies = async () => {
-        const data = await fetch(TMDB_URLS.UPCOMING_MOVIES, TMDB_API_OPTIONS);
+        let url;
+        if (filter == "movies") {
+            url = TMDB_URLS.UPCOMING_MOVIES;
+        } else if (filter == "tvShows") {
+            url = TMDB_URLS.UPCOMING_TV_SHOWS;
+        }
+        const data = await fetch(url, TMDB_API_OPTIONS);
         const json = await data.json();
-        dispatch(addUpcomingMovies(json.results));
+        dispatch(setMovies({data: json.results,category: "upcomingMovies",filter}));
     };
 
     useEffect(() => {
         getUpcomingMovies();
-    }, []);
+    }, [filter]);
 };

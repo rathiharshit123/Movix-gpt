@@ -8,9 +8,18 @@ const movieSlice = createSlice({
             tvShows: null,
         },
         trailer: null,
-        popularMovies: null,
-        upcomingMovies: null,
-        topRatedMovies: null,
+        popularMovies: {
+            movies: null,
+            tvShows: null,
+        },
+        upcomingMovies: {
+            movies: null,
+            tvShows: null,
+        },
+        topRatedMovies: {
+            movies: null,
+            tvShows: null,
+        },
         trendingMovies: {
             day: null,
             week: null,
@@ -20,7 +29,7 @@ const movieSlice = createSlice({
             upcomingMovies: "movies",
             topRatedMovies: "movies",
             trendingMovies: "day",
-            nowPlayingMovies: "movies"
+            nowPlayingMovies: "movies",
         },
     },
     reducers: {
@@ -43,8 +52,8 @@ const movieSlice = createSlice({
             const { filter, data } = action.payload;
             state.trendingMovies[filter] = data;
         },
-        setMovies: (state,action) => {
-            const {category,data,filter} = action.payload;
+        setMovies: (state, action) => {
+            const { category, data, filter } = action.payload;
             state[category][filter] = data;
         },
         setFilter: (state, action) => {
