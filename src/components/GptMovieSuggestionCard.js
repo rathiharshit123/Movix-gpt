@@ -2,7 +2,6 @@ import React from "react";
 import { TMDB_URLS } from "../utils/constants";
 
 const GptMovieSuggestionCard = ({ movieDetails }) => {
-    console.log("YO YOU",movieDetails);
     return (
             <div className="rounded-lg p-4 text-white">
                 <img
