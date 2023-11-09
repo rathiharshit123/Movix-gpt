@@ -8,25 +8,21 @@ export const TMDB_API_OPTIONS = {
     method: "GET",
     headers: {
         accept: "application/json",
-        Authorization:
-            "Bearer "+ process.env.REACT_APP_TMDB_API_TOKEN,
+        Authorization: "Bearer " + process.env.REACT_APP_TMDB_API_TOKEN,
     },
 };
 
-export const NOW_PLAYING_MOVIES_URL =
-    "https://api.themoviedb.org/3/movie/now_playing";
-
-export const POPULAR_MOVIES_URL =
-    "https://api.themoviedb.org/3/movie/popular?language=en-US";
-
-export const TOP_RATED_MOVIES =
-    "https://api.themoviedb.org/3/movie/top_rated?language=en-US";
-
-export const UPCOMING_MOVIES =
-    "https://api.themoviedb.org/3/movie/upcoming?language=en-US";
-
 export const TMDB_IMAGE_URL = "https://image.tmdb.org/t/p/w780";
 
-export const TRENDING_MOVIES_URL = "https://api.themoviedb.org/3/trending/movie/"
-
-export const NOW_PLAYING_TV_SHOWS = "https://api.themoviedb.org/3/tv/airing_today"
+export const TMDB_URLS = {
+    NOW_PLAYING_TV_SHOWS: "https://api.themoviedb.org/3/tv/airing_today",
+    TRENDING_MOVIES_URL: "https://api.themoviedb.org/3/trending/movie/",
+    UPCOMING_MOVIES:
+        "https://api.themoviedb.org/3/movie/upcoming?language=en-US",
+    TOP_RATED_MOVIES:
+        "https://api.themoviedb.org/3/movie/top_rated?language=en-US",
+    POPULAR_MOVIES_URL:
+        "https://api.themoviedb.org/3/movie/popular?language=en-US",
+    NOW_PLAYING_MOVIES_URL: "https://api.themoviedb.org/3/movie/now_playing",
+    TMDB_IMAGE_URL: "https://image.tmdb.org/t/p/w780",
+};
