@@ -2,7 +2,7 @@ import React from "react";
 
 const VideoDetails = ({ movieTitle, movieOverview }) => {
     return (
-        <div className="pt-[20%] px-16  absolute text-white aspect-video w-screen">
+        <div className="pt-[20%] px-16  absolute text-white aspect-video w-[100%]">
             <h1 className="text-4xl font-bold">{movieTitle}</h1>
             <p className="text-lg py-6 w-1/4">{movieOverview}</p>
             <div className="flex">

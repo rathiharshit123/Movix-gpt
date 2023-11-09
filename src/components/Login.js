@@ -25,6 +25,8 @@ const Login = () => {
         setSignupForm(!signupForm);
     };
 
+    console.log(email.current,"JKNASKDJ")
+
     const onButtonClick = async () => {
         let signupValidateResult = validateSignup(
             email.current.value,
