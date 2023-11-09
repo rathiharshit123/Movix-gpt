@@ -5,11 +5,11 @@ const ImageSkeleton = () => {
         <div>
             <div
                 role="status"
-                class="w-48 mx-2 p-4 bg-gray-300 rounded shadow animate-pulse md:p-6"
+                className="w-48 mx-2 p-4 bg-gray-300 rounded shadow animate-pulse md:p-6"
             >
-                <div class="flex items-center justify-center h-48 mb-4 rounded ">
+                <div className="flex items-center justify-center h-48 mb-4 rounded ">
                     <svg
-                        class="w-10 h-10 text-gray-200 dark:text-gray-600"
+                        className="w-10 h-10 text-gray-200 dark:text-gray-600"
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
@@ -19,8 +19,8 @@ const ImageSkeleton = () => {
                         <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.98 2.98 0 0 0 .13 5H5Z" />
                     </svg>
                 </div>
-                <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-24 mb-4"></div>
-                <span class="sr-only">Loading...</span>
+                <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-24 mb-4"></div>
+                <span className="sr-only">Loading...</span>
             </div>
         </div>
     );

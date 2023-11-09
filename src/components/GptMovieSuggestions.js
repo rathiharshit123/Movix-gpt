@@ -1,16 +1,25 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import MovieList from "./MovieList";
+import GptMovieSuggestionCard from "./GptMovieSuggestionCard";
 
 const GptMovieSuggestions = () => {
     const gptMovies = useSelector((state) => state.gpt?.gptMovies);
 
+    console.log(gptMovies, "GPT MOVIES");
     return (
-        <div>
-            <MovieList
-                title="Handpicked Movies for your Search Result"
-                movies={gptMovies}
-            />
+        <div className="flex-col">
+            <h1 className="text-3xl p-4 my-4 font-bold text-white text-center">
+                Handpicked Movies for your Search Result
+            </h1>
+
+            <div className="flex justify-center px-4 mx-5">
+                {gptMovies.map((movie) => (
+                    <GptMovieSuggestionCard
+                        key={movie.id}
+                        movieDetails={movie}
+                    />
+                ))}
+            </div>
         </div>
     );
 };
