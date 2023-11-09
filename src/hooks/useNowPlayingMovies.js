@@ -1,11 +1,14 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { TMDB_API_OPTIONS, TMDB_URLS } from "../utils/constants";
 import { setMovies } from "../utils/redux/movieSlice";
 
 export const useNowPlayingMovies = (filter) => {
     const dispatch = useDispatch();
 
+    const nowPlayingMovies = useSelector((state)=>state.movies?.nowPlayingMovies);
+    let data = nowPlayingMovies[filter];
+    
     const getNowPlayingMovies = async () => {
         let url;
         if (filter == "movies") {
@@ -26,6 +29,6 @@ export const useNowPlayingMovies = (filter) => {
     };
 
     useEffect(() => {
-        getNowPlayingMovies();
+        if(!data) getNowPlayingMovies();
     }, [filter]);
 };

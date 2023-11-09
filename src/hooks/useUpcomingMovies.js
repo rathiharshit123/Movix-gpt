@@ -1,10 +1,13 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { TMDB_API_OPTIONS, TMDB_URLS } from "../utils/constants";
 import { setMovies } from "../utils/redux/movieSlice";
 
 export const useUpcomingMovies = (filter) => {
     const dispatch = useDispatch();
+
+    const upcomingMovies = useSelector((state)=>state.movies?.upcomingMovies);
+    let data = upcomingMovies[filter];
 
     const getUpcomingMovies = async () => {
         let url;
@@ -19,6 +22,6 @@ export const useUpcomingMovies = (filter) => {
     };
 
     useEffect(() => {
-        getUpcomingMovies();
+        if(!data) getUpcomingMovies();
     }, [filter]);
 };
