@@ -24,35 +24,35 @@ const GptSearchBar = () => {
             const GPTPrompt =
                 `Recommend me some movies for this query ${searchValue.current.value}. Just give me examples of 5 movies with comma seperated names like this example I am giving you.Please follow this format strictly in your answers. Example: Don, Sholay, Gadar, Taare Zameen Par, Tiger-3`;
 
-            const chatCompletion = await openai.chat.completions.create({
-                messages: [{ role: "user", content: GPTPrompt }],
-                model: "gpt-3.5-turbo",
-            });
+            // const chatCompletion = await openai.chat.completions.create({
+            //     messages: [{ role: "user", content: GPTPrompt }],
+            //     model: "gpt-3.5-turbo",
+            // });
 
-            // const chatCompletion = {
-            //     "id": "chatcmpl-8IgmXBWl94kBuJFoVmPlfPqdRng37",
-            //     "object": "chat.completion",
-            //     "created": 1699465049,
-            //     "model": "gpt-3.5-turbo-0613",
-            //     "choices": [
-            //       {
-            //         "index": 0,
-            //         "message": {
-            //           "role": "assistant",
-            //           "content": "Mughal-E-Azam, Pakeezah, Amar Akbar Anthony, Kabhi Kabhie, Deewaar"
-            //         },
-            //         "finish_reason": "stop"
-            //       }
-            //     ],
-            //     "usage": {
-            //       "prompt_tokens": 68,
-            //       "completion_tokens": 27,
-            //       "total_tokens": 95
-            //     }
-            // }
+            const chatCompletion = {
+                "id": "chatcmpl-8IgmXBWl94kBuJFoVmPlfPqdRng37",
+                "object": "chat.completion",
+                "created": 1699465049,
+                "model": "gpt-3.5-turbo-0613",
+                "choices": [
+                  {
+                    "index": 0,
+                    "message": {
+                      "role": "assistant",
+                      "content": "Mughal-E-Azam, Pakeezah, Amar Akbar Anthony, Kabhi Kabhie, Deewaar"
+                    },
+                    "finish_reason": "stop"
+                  }
+                ],
+                "usage": {
+                  "prompt_tokens": 68,
+                  "completion_tokens": 27,
+                  "total_tokens": 95
+                }
+            }
               
             const movieSuggestions = chatCompletion.choices[0].message.content.split(',');
-            const promiseArray = movieSuggestions.map((movie)=> searchMovieDetails(movie));
+            const promiseArray = movieSuggestions?.map((movie)=> searchMovieDetails(movie));
 
             const movieResults = await Promise.all(promiseArray);
 

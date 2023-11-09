@@ -26,3 +26,7 @@ export const UPCOMING_MOVIES =
     "https://api.themoviedb.org/3/movie/upcoming?language=en-US";
 
 export const TMDB_IMAGE_URL = "https://image.tmdb.org/t/p/w780";
+
+export const TRENDING_MOVIES_URL = "https://api.themoviedb.org/3/trending/movie/"
+
+export const NOW_PLAYING_TV_SHOWS = "https://api.themoviedb.org/3/tv/airing_today"

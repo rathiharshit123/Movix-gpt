@@ -8,12 +8,17 @@ import { useTopRatedMovies } from "../hooks/useTopRatedMovies";
 import { useUpcomingMovies } from "../hooks/useUpcomingMovies";
 import { useSelector } from "react-redux";
 import GptSearch from "./GptSearch";
+import { useTrendingMovies } from "../hooks/useTrendingMovies";
 
 const Browse = () => {
-    useNowPlayingMovies();
-    usePopularMovies();
-    useTopRatedMovies();
-    useUpcomingMovies();
+    const activeFilters = useSelector((state) => state.movies.activeFilters);
+    const { trendingMovies,nowPlayingMovies,upcomingMovies,popularMovies,topRatedMovies } = activeFilters;
+
+    useNowPlayingMovies(nowPlayingMovies);
+    usePopularMovies(popularMovies);
+    useTopRatedMovies(topRatedMovies);
+    useUpcomingMovies(upcomingMovies);
+    useTrendingMovies(trendingMovies);
 
     const gptSearch = useSelector((store) => store.gpt);
 
