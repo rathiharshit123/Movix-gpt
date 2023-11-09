@@ -33,24 +33,8 @@ const movieSlice = createSlice({
         },
     },
     reducers: {
-        addNowPlayingMovies: (state, action) => {
-            state.nowPlayingMovies = action.payload;
-        },
         addTrailer: (state, action) => {
             state.trailer = action.payload;
-        },
-        addPopularMovies: (state, action) => {
-            state.popularMovies = action.payload;
-        },
-        addUpcomingMovies: (state, action) => {
-            state.upcomingMovies = action.payload;
-        },
-        addTopRatedMovies: (state, action) => {
-            state.topRatedMovies = action.payload;
-        },
-        addTrendingMovies: (state, action) => {
-            const { filter, data } = action.payload;
-            state.trendingMovies[filter] = data;
         },
         setMovies: (state, action) => {
             const { category, data, filter } = action.payload;

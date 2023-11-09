@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MovieCard from "./MovieCard";
 import { useDispatch } from "react-redux";
 import { setFilter } from "../utils/redux/movieSlice";
+import MovieListSkeleton from "./MovieListSkeleton";
 
 const MovieList = ({ title, movies }) => {
     const [btnToggle, setBtnToggle] = useState(true);
@@ -12,19 +13,44 @@ const MovieList = ({ title, movies }) => {
     const handleButtonClick = (button) => {
         switch (title) {
             case "Trending":
-                dispatch(setFilter({ category: "trendingMovies", filter: button=="left"? "day":"week" }));
+                dispatch(
+                    setFilter({
+                        category: "trendingMovies",
+                        filter: button == "left" ? "day" : "week",
+                    })
+                );
                 break;
             case "Now Playing":
-                dispatch(setFilter({ category: "nowPlayingMovies", filter: button=="left"? "movies":"tvShows" }));
+                dispatch(
+                    setFilter({
+                        category: "nowPlayingMovies",
+                        filter: button == "left" ? "movies" : "tvShows",
+                    })
+                );
                 break;
             case "Popular":
-                dispatch(setFilter({ category: "popularMovies", filter: button=="left"? "movies":"tvShows" }));
+                dispatch(
+                    setFilter({
+                        category: "popularMovies",
+                        filter: button == "left" ? "movies" : "tvShows",
+                    })
+                );
                 break;
             case "Upcoming":
-                dispatch(setFilter({ category: "upcomingMovies", filter: button=="left"? "movies":"tvShows" }));
+                dispatch(
+                    setFilter({
+                        category: "upcomingMovies",
+                        filter: button == "left" ? "movies" : "tvShows",
+                    })
+                );
                 break;
             case "Top Rated":
-                dispatch(setFilter({ category: "topRatedMovies", filter: button=="left"? "movies":"tvShows" }));
+                dispatch(
+                    setFilter({
+                        category: "topRatedMovies",
+                        filter: button == "left" ? "movies" : "tvShows",
+                    })
+                );
                 break;
 
             default:
@@ -38,7 +64,7 @@ const MovieList = ({ title, movies }) => {
     };
 
     return (
-        <div className="px-6">
+        <>
             <div className="flex justify-between">
                 <h1 className="text-3xl font-bold py-2 text-white">{title}</h1>
                 <div className="rounded-2xl px-4 py-2 my-4 flex">
@@ -50,7 +76,7 @@ const MovieList = ({ title, movies }) => {
                         }`}
                         onClick={() => handleButtonClick("left")}
                     >
-                        {title == "Trending" ? "Day": "Movies"}
+                        {title == "Trending" ? "Day" : "Movies"}
                     </button>
                     <button
                         className={`px-4 py-2 rounded-full ${
@@ -60,21 +86,27 @@ const MovieList = ({ title, movies }) => {
                         }`}
                         onClick={() => handleButtonClick("right")}
                     >
-                        {title == "Trending" ? "Week": "TV Shows"}
+                        {title == "Trending" ? "Week" : "TV Shows"}
                     </button>
                 </div>
             </div>
-            <div className="flex overflow-x-scroll scrollbar-hidden">
-                <div className="flex">
-                    {movies?.map((movie) => (
-                        <MovieCard
-                            key={movie.id}
-                            posterPath={movie?.poster_path}
-                        />
-                    ))}
+            {!movies ? (
+                <MovieListSkeleton />
+            ) : (
+                <div className="px-6">
+                    <div className="flex overflow-x-scroll scrollbar-hidden">
+                        <div className="flex">
+                            {movies?.map((movie) => (
+                                <MovieCard
+                                    key={movie.id}
+                                    posterPath={movie?.poster_path}
+                                />
+                            ))}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            )}
+        </>
     );
 };
 
